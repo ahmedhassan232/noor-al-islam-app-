@@ -1,0 +1,342 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --font-quran: "Amiri Quran", "Scheherazade New", "Amiri", "Traditional Arabic", serif;
+  --font-kufi: "Reem Kufi", "Cairo", sans-serif;
+
+  --color-night-950: #04100c;
+  --color-night-900: #071510;
+  --color-night-850: #0b2119;
+  --color-night-800: #10291f;
+  --color-night-700: #153626;
+  --color-night-600: #1d4630;
+  --color-emerald-700: #0f5138;
+  --color-emerald-500: #16a36a;
+  --color-emerald-400: #2ec187;
+  --color-gold-300: #e8d5a8;
+  --color-gold-400: #d6b46a;
+  --color-gold-500: #b9964f;
+  --color-ivory-50: #f6f1e7;
+  --color-ink: #f7f5ee;
+  --color-mist: #aebfb4;
+  --color-rose: #e57373;
+  --color-mint: #56c596;
+}
+
+:root {
+  --bg: #071510;
+  --bg-2: #0b2119;
+  --surface: #10291f;
+  --surface-2: #153626;
+  --surface-3: #1a3f2c;
+  --line: rgba(214, 180, 106, 0.13);
+  --line-strong: rgba(214, 180, 106, 0.32);
+  --ink: #f7f5ee;
+  --muted: #aebfb4;
+  --gold: #d6b46a;
+  --emerald: #16a36a;
+  --emerald-deep: #0f5138;
+  --danger: #e57373;
+  --ok: #56c596;
+  --shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
+  --shadow-soft: 0 12px 34px -18px rgba(0, 0, 0, 0.55);
+  --ring: rgba(22, 163, 106, 0.55);
+  --glow: rgba(22, 163, 106, 0.22);
+}
+
+html[data-theme="light"] {
+  --bg: #f4efe4;
+  --bg-2: #ede6d7;
+  --surface: #fffdf7;
+  --surface-2: #f8f3e8;
+  --surface-3: #efe8d8;
+  --line: rgba(15, 81, 56, 0.13);
+  --line-strong: rgba(15, 81, 56, 0.3);
+  --ink: #17332b;
+  --muted: #5b7268;
+  --gold: #a8873f;
+  --emerald: #0e6b48;
+  --emerald-deep: #0f5138;
+  --danger: #c25454;
+  --ok: #1d8a5b;
+  --shadow: 0 24px 55px -30px rgba(23, 51, 43, 0.35);
+  --shadow-soft: 0 10px 28px -16px rgba(23, 51, 43, 0.25);
+  --ring: rgba(14, 107, 72, 0.5);
+  --glow: rgba(14, 107, 72, 0.12);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(214, 180, 106, 0.35);
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 30%, transparent);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ===== خلفية هندسية إسلامية ===== */
+.geo-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1200px 640px at 85% -10%, var(--glow), transparent 60%),
+    radial-gradient(900px 520px at -15% 110%, color-mix(in srgb, var(--gold) 9%, transparent), transparent 55%);
+}
+.geo-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 20%, transparent 75%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23d6b46a' stroke-opacity='0.10'%3E%3Cpath d='M48 8l10 20 22 2-16 16 4 22-20-11-20 11 4-22L16 30l22-2z'/%3E%3Ccircle cx='48' cy='48' r='34' stroke-dasharray='3 6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ===== بطاقات ===== */
+.card {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+}
+.card-hover {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s, border-color 0.3s;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+}
+
+.gold-text {
+  background: linear-gradient(115deg, var(--gold) 10%, #f1e3bd 45%, var(--gold) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ornament-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gold);
+}
+.ornament-line::before,
+.ornament-line::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to var(--dir, left), transparent, var(--line-strong));
+}
+.ornament-line::after {
+  --dir: right;
+}
+
+/* ===== أزرار ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s,
+    box-shadow 0.25s, opacity 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+.btn:active {
+  transform: scale(0.96);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-deep) 100%);
+  color: #f4fbf7;
+  box-shadow: 0 14px 30px -14px var(--glow);
+  padding: 12px 22px;
+}
+.btn-primary:hover {
+  box-shadow: 0 18px 38px -14px var(--glow);
+}
+.btn-ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  padding: 12px 20px;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+}
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  color: var(--muted);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* ===== نص قرآني ===== */
+.quran-text {
+  font-family: var(--font-quran);
+  font-size: calc(1.9rem * var(--quran-scale, 1));
+  line-height: 2.4;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.ayah-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9em;
+  height: 1.9em;
+  margin-inline: 0.25em;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 0.55em;
+  font-family: var(--font-sans);
+  vertical-align: middle;
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 10%, transparent), transparent 75%);
+}
+
+/* ===== حركات ===== */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-up-sheet {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.anim-rise { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-pop { animation: pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-fade { animation: fade-in 0.5s ease both; }
+.anim-slide-sheet { animation: slide-up-sheet 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-float { animation: floaty 7s ease-in-out infinite; }
+.anim-spin-slow { animation: spin-slow 40s linear infinite; }
+
+.stagger > * { animation: rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.03s; }
+.stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger > *:nth-child(3) { animation-delay: 0.13s; }
+.stagger > *:nth-child(4) { animation-delay: 0.18s; }
+.stagger > *:nth-child(5) { animation-delay: 0.23s; }
+.stagger > *:nth-child(6) { animation-delay: 0.28s; }
+.stagger > *:nth-child(7) { animation-delay: 0.33s; }
+.stagger > *:nth-child(8) { animation-delay: 0.38s; }
+.stagger > *:nth-child(9) { animation-delay: 0.43s; }
+.stagger > *:nth-child(10) { animation-delay: 0.48s; }
+
+.skeleton {
+  border-radius: 14px;
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--surface-2) 60%, transparent) 40%,
+    color-mix(in srgb, var(--surface-3) 80%, transparent) 50%,
+    color-mix(in srgb, var(--surface-2) 60%, transparent) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* شريط تمرير مخصص للسلايدر */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--muted) 25%, transparent);
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line-strong);
+  transition: transform 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+input[type="range"]::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--gold); border: 3px solid var(--surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
