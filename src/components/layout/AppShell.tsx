@@ -23,7 +23,6 @@ import { Logo } from "@/components/decor";
 import { usePrefs } from "@/lib/services/prefsStore";
 import SearchModal from "@/components/SearchModal";
 import MoreSheet from "@/components/layout/MoreSheet";
-import InstallPrompt from "@/components/pwa/InstallPrompt";
 
 const NAV = [
   { href: "/", label: "الرئيسية", icon: Home },
@@ -161,7 +160,6 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <InstallPrompt />
 
       {/* ===== المحتوى ===== */}
       <main className="md:ps-[272px]">
