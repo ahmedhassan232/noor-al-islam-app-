@@ -11,7 +11,14 @@ export const metadata: Metadata = {
   description:
     "تطبيق إسلامي شامل: القرآن الكريم قراءةً واستماعاً بأصوات نديّة، أحاديث موثقة، أذكار، مواقيت الصلاة، اتجاه القبلة، وإذاعات قرآنية.",
   applicationName: "نور الإسلام",
-  icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.svg", sizes: "192x192", type: "image/svg+xml" },
+      { url: "/icons/icon-512.svg", sizes: "512x512", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/icons/icon-192.svg", sizes: "192x192", type: "image/svg+xml" }],
+  },
   manifest: "/manifest.webmanifest",
   appleWebApp: { capable: true, title: "نور الإسلام", statusBarStyle: "black-translucent" },
   other: { "mobile-web-app-capable": "yes" },
